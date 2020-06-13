@@ -1,8 +1,5 @@
 # my_first_repo
-Mi primer repo github de verdad
 
-Mi primera modificación,
+# Aplicación para realizar rifas de una lista de productos a una lista de personas
 
-Mi segunda modificación en github
 
-Mi tercera modificación desde un branch: develop
