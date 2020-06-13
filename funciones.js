@@ -1,7 +1,6 @@
 /* Rifa de participantes*/
 
 let participantes = ['alejandro','tatti', 'paulo', 'stephanie', 'gina', 'juan', 'goku', 'maría'];
-
 let premios = ['cepillo', 'TV', 'Celular', 'Botella', 'USB', 'iWatch'];
 
 function rifa(){
