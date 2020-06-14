@@ -1,0 +1,19 @@
+{
+  "name": "my_first_repo",
+  "version": "1.0.0",
+  "description": "Aplicación para realizar rifas de una lista de productos a una lista de personas",
+  "main": "funciones.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pikdo/my_first_repo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pikdo/my_first_repo/issues"
+  },
+  "homepage": "https://github.com/Pikdo/my_first_repo#readme"
+}
