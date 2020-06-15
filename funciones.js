@@ -21,7 +21,7 @@ function cargarEventos(){
 
 function rifa(){
     if(premios.length === 0){
-        console.log('Sorteo finalizado, premios agotados :(');
+        alert('Sorteo finalizado, premios agotados :(,\n FELICIDAES A LOS GANADORES');
         return;
     }
 
