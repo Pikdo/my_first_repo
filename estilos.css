@@ -18,5 +18,10 @@ body{
     padding: 10px;
     width: 200px;
     font-weight: bold;
-    color: coral;
+    background-color: #03a9f4;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+textarea {
+    background-color: #eceff1;
 }
