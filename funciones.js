@@ -10,10 +10,15 @@ var modRifa = (function(){
     let outGanadores = document.getElementById('outGanadores');
     let isIniciado = false;
 
+    /**
+     * Función para iniciar el módulo
+     */
     function iniciar(){
         cargarEventos();
     }
-
+    /**
+     * Función para reiniciar la rifa
+     */
     function reiniciar(){
         txtPremios.value = "";
         txtParticipantes.value = "";
@@ -21,7 +26,9 @@ var modRifa = (function(){
         btnRifar.disabled = false;
         btnReiniciar.disabled = true;
     }
-
+    /**
+     * Función para cargar la información de los premios y participantes
+     */
     async function cargarInfo(){
 
         return new Promise(function(success, error){
@@ -34,12 +41,17 @@ var modRifa = (function(){
         });
         
     }
-
+    /**
+     * Función para cargar los eventos
+     */
     function cargarEventos(){       
         btnRifar.addEventListener('click',a=>{rifa()});
         btnReiniciar.addEventListener('click', b=>{reiniciar()});
     }
 
+    /**
+     * Función para validar los elementos de la rifa
+     */
     function validarRifa(){
 
         if(isIniciado == false){
@@ -59,7 +71,9 @@ var modRifa = (function(){
             }
         }
     }
-
+    /**
+     * Función para generar un color aleatorio
+     */
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';
@@ -68,7 +82,9 @@ var modRifa = (function(){
         }
         return color;
     }
-    
+    /**
+     * Función que genera la animación de la rifa
+     */
     async function animacionRifa(){
         let intervalo = setInterval(function(){
             let numero = Math.round(Math.random() * (participantes.length - 1));            
@@ -84,6 +100,11 @@ var modRifa = (function(){
         });        
     }
 
+    /**
+     * Función para sacar un elemento aleatorio de una lista
+     * @param lista 
+     * @param txtInput
+     */
     function sacarElemento(lista, txtInput){     
         // Obtiene Numero random según lista (array)
         let numero = Math.round(Math.random() * (lista.length - 1)); 
@@ -98,7 +119,9 @@ var modRifa = (function(){
         txtInput.value = lista;
         return elegido;
     }
-
+    /**
+     * Función para realizar una rifa
+     */
     async function rifa(){
         let randomPremio, randomGanador;
         try {            
