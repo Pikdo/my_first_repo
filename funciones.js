@@ -85,6 +85,9 @@ var modRifa = (function(){
         let numero = Math.round(Math.random() * (lista.length - 1)); 
         
         let elegido = lista[numero];
+        if(elegido == 'undefined'){
+            throw new Error('Ya no hay elementos para seleccionar en' || lista.constructor.name);
+        }
 
         lista.splice(lista.indexOf(elegido),1);
        
