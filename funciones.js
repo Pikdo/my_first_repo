@@ -10,6 +10,10 @@ var modRifa = (function(){
     let outGanadores = document.getElementById('outGanadores');
     let isIniciado = false;
 
+    function iniciar(){
+        cargarEventos();
+    }
+
     function reiniciar(){
         txtPremios.value = "";
         txtParticipantes.value = "";
@@ -116,12 +120,9 @@ var modRifa = (function(){
     }
 
     return {
-        cargarInfo,
-        cargarEventos,
-        participantes, 
-        premios
+        iniciar
     };
 
 })();
 
-modRifa.cargarEventos();
+modRifa.iniciar();
