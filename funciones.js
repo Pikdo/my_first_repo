@@ -1,51 +1,124 @@
 /* Rifa de participantes*/
-
-let participantes = [];
-let premios = [];
-let txtPremios = document.getElementById('txtPremios');
-let txtParticipantes = document.getElementById('txtParticipantes');
-
-function cargarInfo(){
-    premios = txtPremios.value.split(',');
-    participantes = txtParticipantes.value.split(',');
-}
-
-function cargarEventos(){
+/**
+ * modRifa modulo creado para realizar rifas de una lista de premios y participantes.
+ */
+var modRifa = (function(){
+    let participantes, premios = [];   
+    let txtPremios, txtParticipantes;
     let btnRifar = document.getElementById("btnRifar");
-    btnRifar.addEventListener('click',a=>{
-        rifa();
-    });
-}
+    let btnReiniciar = document.getElementById("btnReiniciar");
+    let outGanadores = document.getElementById('outGanadores');
+    let isIniciado = false;
 
-
-
-function rifa(){
-    if(premios.length === 0){
-        alert('Sorteo finalizado, premios agotados :(,\n FELICIDAES A LOS GANADORES');
-        return;
+    function reiniciar(){
+        txtPremios.value = "";
+        txtParticipantes.value = "";
+        outGanadores.value = "";
+        btnRifar.disabled = false;
+        btnReiniciar.disabled = true;
     }
 
-    randomPremio = Math.round(Math.random() * (premios.length - 1));
-    randomGanador = Math.round(Math.random() * (participantes.length - 1));
+    async function cargarInfo(){
+
+        return new Promise(function(success, error){
+            txtPremios = document.getElementById('txtPremios');
+            txtParticipantes = document.getElementById('txtParticipantes');
+
+            premios = (txtPremios.value != "")?txtPremios.value.split(','):[];
+            participantes = (txtParticipantes.value != "")? txtParticipantes.value.split(','):[];
+            success();
+        });
+        
+    }
+
+    function cargarEventos(){       
+        btnRifar.addEventListener('click',a=>{rifa()});
+        btnReiniciar.addEventListener('click', b=>{reiniciar()});
+    }
+
+    function validarRifa(){
+
+        if(isIniciado == false){
+            if(txtPremios.value == 0){
+                throw new Error("Defina los premios, separados por coma");                
+            }else if (participantes.length == 0){
+                throw new Error("Defina los participantes, separados por coma");                
+            }
+            else {
+                isIniciado = true;
+                btnReiniciar.disabled = false;
+            }
+        }else{
+            if(premios.length == 0){
+                btnRifar.disabled = true;
+                throw new Error('Sorteo finalizado, premios agotados,\n !..:.: FELICIDAES A LOS GANADORES :.:..!');
+            }
+        }
+    }
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
     
-    var premio = premios[randomPremio];
-    var ganador = participantes[randomGanador];
+    async function animacionRifa(){
+        let intervalo = setInterval(function(){
+            let numero = Math.round(Math.random() * (participantes.length - 1));            
+            btnRifar.value = participantes[numero];
+            btnRifar.style.backgroundColor = getRandomColor();
+        }, 100);
+
+        return new Promise(function(success, error){
+            setTimeout(function(){
+                clearInterval(intervalo);
+                success();
+             }, 3000);
+        });        
+    }
+
+    function sacarElemento(lista, txtInput){     
+        // Obtiene Numero random según lista (array)
+        let numero = Math.round(Math.random() * (lista.length - 1)); 
+        
+        let elegido = lista[numero];
+
+        lista.splice(lista.indexOf(elegido),1);
+       
+        txtInput.value = lista;
+        return elegido;
+    }
+
+    async function rifa(){
+        let randomPremio, randomGanador;
+        try {            
+            await cargarInfo();
     
-    console.log(ganador + ' se ha ganado el premio: ' + premio);
+            validarRifa();
 
-    const outGanadores = document.getElementById('outGanadores');
-    outGanadores.innerText += ganador + ' ha ganado: ' + premio + '\n';
-    
-    participantes.splice(participantes.indexOf(ganador),1); 
-    premios.splice(premios.indexOf(premio),1); 
+            await animacionRifa().then(function(){ btnRifar.value = "Rifar"; });
 
-    txtPremios.value = premios;
-    txtParticipantes.value = participantes;
-     
-    console.log('Participantes restantes', participantes);
-    console.log('Premios restantes', premios);
+            let premio = sacarElemento(premios, txtPremios);
+            let ganador = sacarElemento(participantes, txtParticipantes);
+                                 
+            outGanadores.innerText += ganador + ' ha ganado: ' + premio + '\n';         
+            
+        } catch (error) {
+            alert(error.message);
+        }        
 
-}
+    }
 
-cargarInfo();
-cargarEventos();
+    return {
+        cargarInfo,
+        cargarEventos,
+        participantes, 
+        premios
+    };
+
+})();
+
+modRifa.cargarEventos();

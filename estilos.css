@@ -2,6 +2,11 @@ body{
     font-family: 'Courier New', Courier, monospace;
 }
 
+textarea {
+    background-color: #eceff1;
+}
+
+/* Por Id*/
 #tablaRifa {
     width: 100%;
 }
@@ -14,7 +19,8 @@ body{
     width: 100%;
 }
 
-#btnRifar{
+/*Classes*/
+.boton{
     padding: 10px;
     width: 200px;
     font-weight: bold;
@@ -22,6 +28,3 @@ body{
     font-family: 'Courier New', Courier, monospace;
 }
 
-textarea {
-    background-color: #eceff1;
-}

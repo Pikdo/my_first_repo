@@ -5,26 +5,32 @@
     <link rel="stylesheet" href="estilos.css">  
   </head>
   <body>
-    <h1>RIFA WEB APP</h1>
+    <h1>RIFAS</h1>
     <hr>
     <table id="tablaRifa">
       <tr>
         <td>
           <h2>PREMIOS</h2>
-          <textarea name="txtPremios" id="txtPremios" cols="30" rows="10" >iPhone,Laptop,Silla Gaming,Reloj pared,Balón Scorpio Nike 2002,Tacos Copa Mundo Adidas</textarea>    
+          <textarea name="txtPremios" id="txtPremios" cols="30" rows="10" placeholder="Digite los premios (Ejemplo: carro, jugo, ...)" >Viaje México, Masaje, 3 Noches Hotel RIU, Carro eléctrico, Celular</textarea>    
         </td>
         <td>
           <h2>PARTICIPANTES</h2>
-          <textarea name="txtParticipantes" id="txtParticipantes" cols="30" rows="10" >Alejandro Picado Brenes,Juan Ulloa,Epson Arante du Nacimiento,Diego Armando Maradona, Pauo Picado, Katherine Varela, Agustín Morera</textarea> 
+          <textarea name="txtParticipantes" id="txtParticipantes" cols="30" rows="10" placeholder="Digite los participantes (Ejemplo: jose, maría, jesús, ...)" >alito, tati, paulo, mamita, papito, shirley, gerson</textarea> 
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" class="boton" id="btnReiniciar" value="Reiniciar" disabled>
+        </td>
+        <td>
+          <input type="button" class="boton" id="btnRifar" value="RIFAR">
         </td>
       </tr>
       <tr>
         <td>
           <h2>GANARADORES</h2>
           <output id="outGanadores"></output></td>
-        <td>
-          <input type="button" id="btnRifar" value="RIFAR">
-        </td>
+        
       </tr>    
     </table>
 
