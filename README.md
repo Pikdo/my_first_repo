@@ -6,5 +6,4 @@ Se debe llenar la lista de premios separados por coma y la lista participantes
 
 ---------------------------------------------------------------------------------
 
-Att:
-Pikdo SA
+Att:Pikdo SA
