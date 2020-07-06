@@ -1,6 +1,7 @@
 /* Rifa de participantes*/
 /**
  * modRifa modulo creado para realizar rifas de una lista de premios y participantes.
+ * jpicado
  */
 var modRifa = (function(){
     let participantes, premios = [];   
